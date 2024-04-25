@@ -84,7 +84,7 @@ export default async function About() {
                 To build beautiful software, I use these technologies.
               </h2>
 
-              <ul className="flex items-center justify-start gap-6 mt-8">
+              <ul className="flex flex-wrap items-center justify-start gap-6 mt-8">
                 {data.skills.map((skill, id) => (
                   <li
                     key={id}
