@@ -11,7 +11,7 @@ export default async function Job() {
         <h2 className="font-semibold text-4xl mb-4">Work Experience</h2>
       </div>
 
-      <div className="flex justify-between gap-12">
+      <div className="flex lg:flex-row flex-col justify-between gap-12">
         {jobs.sort((a, b) => a.startDate < b.startDate ? 1 : -1).map((data) => (
           <div
             key={data._id}
