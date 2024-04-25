@@ -6,7 +6,7 @@ export default function Navbar() {
     <header className="py-6 md:px-16 px-6 border-b border-zinc-800 z-30 md:mb-28 mb-20">
       <div className="max-w-6xl mx-auto flex items-center justify-between">
         <Link href="/">
-          <PiBird className="text-2xl" />
+          <PiBird className="text-2xl hover:text-cyan-400 duration-300" />
         </Link>
         <nav>
           <ul className="flex items-center gap-x-8">

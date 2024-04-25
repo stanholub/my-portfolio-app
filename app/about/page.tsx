@@ -1,9 +1,32 @@
-
 import Image from "next/image";
 import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
 import { PortableText } from "@portabletext/react";
-import { BiEnvelope } from "react-icons/bi";
+import { BiEnvelope, BiFile } from "react-icons/bi";
+
+import {
+  SiReact,
+  SiAngular,
+  SiJavascript,
+  SiTypescript,
+  SiHtml5,
+  SiCss3,
+  SiSass,
+  SiTailwindcss,
+  SiExpress,
+} from "react-icons/si";
+
+const skillIcons: { [key: string]: JSX.Element } = {
+  react: <SiReact />,
+  angular: <SiAngular />,
+  javascript: <SiJavascript />,
+  typescript: <SiTypescript />,
+  html: <SiHtml5 />,
+  css: <SiCss3 />,
+  sass: <SiSass />,
+  tailwindcss: <SiTailwindcss />,
+  express: <SiExpress />,
+};
 
 export default async function About() {
   const profile: ProfileType[] = await getProfile();
@@ -16,7 +39,7 @@ export default async function About() {
             <section className="grid lg:grid-cols-2 grid-cols-1 gap-x-6 justify-items-center">
               <div className="order-2 lg:order-none">
                 <h1 className="lg:text-5xl text-4xl lg:leading-tight basis-1/2 font-bold mb-8">
-                  I&apos;m {data.fullName}. I live in {data.location}, where I build software.
+                  I&apos;m {data.fullName}. I live in {data.location}.
                 </h1>
 
                 <div className="flex flex-col gap-y-3 text-zinc-400 leading-relaxed">
@@ -30,10 +53,16 @@ export default async function About() {
                     className="rounded-2xl mb-4 object-cover max-h-96 min-h-96 bg-top bg-[#1d1d20]"
                     src={data.profileImage.image}
                     width={400}
-                    height={400}
+                    height={600}
                     quality={100}
                     alt={data.profileImage.alt}
                   />
+                  <a
+                    href={`${data.resumeURL}?dl=${data.fullName}_resume`}
+                    className="flex items-center justify-center gap-x-2 bg-[#1d1d20] border border-transparent hover:border-zinc-700 rounded-md duration-200 py-2 text-center cursor-cell font-medium"
+                  >
+                    <BiFile className="text-base" /> Download Resumé
+                  </a>
                 </div>
 
                 <ul>
@@ -51,18 +80,17 @@ export default async function About() {
             </section>
 
             <section className="mt-24 max-w-2xl">
-              <h2 className="font-semibold text-4xl mb-4">Expertise</h2>
-              <p className="text-zinc-400 max-w-lg">
-                Here are a few of my skills, in no particular order
-              </p>
+              <h2 className="font-semibold text-4xl mb-4">
+                To build beautiful software, I use these technologies.
+              </h2>
 
-              <ul className="flex flex-wrap items-center gap-3 mt-8">
+              <ul className="flex items-center justify-start gap-6 mt-8">
                 {data.skills.map((skill, id) => (
                   <li
                     key={id}
-                    className="border border-transparent hover:border-zinc-700 rounded-md px-2 py-1"
+                    className="text-zinc-400 text-4xl hover:text-cyan-400 duration-300"
                   >
-                    {skill}
+                    {skillIcons[skill.toLocaleLowerCase()]}
                   </li>
                 ))}
               </ul>
