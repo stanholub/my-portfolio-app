@@ -2,6 +2,12 @@ import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
 import { HiOutlineCommandLine } from "react-icons/hi2";
 import Job from "./components/Job";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
+
+const socialIcons: { [key: string]: JSX.Element } = {
+  github: <FaGithub />,
+  linkedin: <FaLinkedin />,
+};
 
 export default async function Home() {
   const profile: ProfileType[] = await getProfile();
@@ -26,9 +32,9 @@ export default async function Home() {
                       <a
                         href={value}
                         rel="noreferer noopener"
-                        className="flex items-center gap-x-3 mb-5 hover:text-purple-400 duration-300"
+                        className="flex items-center gap-x-3 mb-5 hover:text-cyan-400 text-xl duration-300"
                       >
-                        {key[0].toUpperCase() + key.toLowerCase().slice(1)}
+                        {socialIcons[key]}
                       </a>
                     </li>
                   ))}
@@ -36,9 +42,9 @@ export default async function Home() {
             </div>
           ))}
 
-          <HiOutlineCommandLine className="text-9xl text-slate-200" />
+        <HiOutlineCommandLine className="text-9xl text-slate-200" />
       </section>
-      <Job/>
+      <Job />
     </main>
   );
 }

@@ -3,7 +3,7 @@ import Image from "next/image";
 import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
 import { PortableText } from "@portabletext/react";
-import { BiEnvelope, BiFile } from "react-icons/bi";
+import { BiEnvelope } from "react-icons/bi";
 
 export default async function About() {
   const profile: ProfileType[] = await getProfile();
@@ -40,7 +40,7 @@ export default async function About() {
                   <li>
                     <a
                       href={`mailto:${data.email}`}
-                      className="flex items-center gap-x-2 hover:text-purple-400 duration-300"
+                      className="flex items-center gap-x-2 hover:text-cyan-400 duration-300"
                     >
                       <BiEnvelope className="text-lg" />
                       {data.email}
