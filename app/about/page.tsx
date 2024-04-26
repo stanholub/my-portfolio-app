@@ -14,6 +14,7 @@ import {
   SiSass,
   SiTailwindcss,
   SiExpress,
+  SiNextdotjs
 } from "react-icons/si";
 
 const skillIcons: { [key: string]: JSX.Element } = {
@@ -26,6 +27,7 @@ const skillIcons: { [key: string]: JSX.Element } = {
   sass: <SiSass />,
   tailwindcss: <SiTailwindcss />,
   express: <SiExpress />,
+  nextjs: <SiNextdotjs />,
 };
 
 export default async function About() {
