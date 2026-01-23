@@ -12,5 +12,5 @@ export interface BlogPost {
     image: string;
     alt?: string;
   };
-  content: PortableTextBlock[]; 
+  content: PortableTextBlock[];
 }
