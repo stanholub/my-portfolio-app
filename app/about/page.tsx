@@ -34,17 +34,17 @@ export default async function About() {
   const profile: ProfileType[] = await getProfile();
 
   return (
-    <main className="lg:max-w-7xl mx-auto max-w-3xl md:px-16 px-6">
+    <main className="px-6 space-y-24 max-w-4xl mx-auto pt-10">
       {profile &&
         profile.map((data) => (
           <div key={data._id}>
             <section className="grid lg:grid-cols-2 grid-cols-1 gap-x-6 justify-items-center">
               <div className="order-2 lg:order-none">
-                <h1 className="lg:text-5xl text-4xl lg:leading-tight basis-1/2 font-bold mb-8">
+                <h1 className="lg:text-5xl text-4xl lg:leading-tight basis-1/2 font-display font-bold mb-8 text-stone-900 dark:text-white">
                   I&apos;m {data.fullName}. I live in {data.location}.
                 </h1>
 
-                <div className="flex flex-col gap-y-3 text-zinc-400 leading-relaxed">
+                <div className="flex flex-col gap-y-3 text-stone-600 dark:text-stone-400 leading-relaxed text-lg">
                   <PortableText value={data.fullBio} />
                 </div>
               </div>
@@ -52,7 +52,7 @@ export default async function About() {
               <div className="flex flex-col lg:justify-self-center justify-self-start gap-y-8 lg:order-1 order-none mb-12">
                 <div>
                   <Image
-                    className="rounded-2xl mb-4 object-cover max-h-96 min-h-96 bg-top bg-[#1d1d20]"
+                    className="rounded-2xl mb-4 object-cover max-h-96 min-h-96 bg-top bg-stone-100 dark:bg-stone-800"
                     src={data.profileImage.image}
                     width={400}
                     height={600}
@@ -61,9 +61,9 @@ export default async function About() {
                   />
                   <a
                     href={`${data.resumeURL}?dl=${data.fullName}_resume.pdf`}
-                    className="flex items-center justify-center gap-x-2 bg-[#1d1d20] border border-transparent hover:border-zinc-700 rounded-md duration-200 py-2 text-center cursor-cell font-medium"
+                    className="w-full flex items-center justify-center gap-x-2 bg-transparent border border-stone-200 dark:border-stone-700 hover:border-primary hover:text-primary rounded-xl duration-200 py-3 text-center cursor-pointer font-medium text-stone-900 dark:text-white shadow-sm transition-colors group"
                   >
-                    <BiFile className="text-base" /> Download Resumé
+                    <BiFile className="text-xl group-hover:text-primary transition-colors text-stone-400 dark:text-stone-500" /> Download Resumé
                   </a>
                 </div>
 
@@ -71,9 +71,9 @@ export default async function About() {
                   <li>
                     <a
                       href={`mailto:${data.email}`}
-                      className="flex items-center gap-x-2 hover:text-cyan-400 duration-300"
+                      className="flex items-center gap-x-2 text-stone-600 dark:text-stone-400 hover:text-primary duration-300 font-medium"
                     >
-                      <BiEnvelope className="text-lg" />
+                      <BiEnvelope className="text-xl" />
                       {data.email}
                     </a>
                   </li>
@@ -82,7 +82,7 @@ export default async function About() {
             </section>
 
             <section className="mt-24 max-w-2xl">
-              <h2 className="font-semibold text-4xl mb-4">
+              <h2 className="font-display font-bold text-4xl mb-4 text-stone-900 dark:text-white">
                 To build beautiful software, I use these technologies.
               </h2>
 
@@ -90,9 +90,9 @@ export default async function About() {
                 {data.skills.map((skill, id) => (
                   <li
                     key={id}
-                    className="text-zinc-400 text-4xl hover:text-cyan-400 duration-300"
+                    className="text-stone-400 hover:text-primary duration-300 text-5xl transition-colors"
                   >
-                    {skillIcons[skill.toLocaleLowerCase()]}
+                    {skillIcons[skill.toLocaleLowerCase()] || skill}
                   </li>
                 ))}
               </ul>
