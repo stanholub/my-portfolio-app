@@ -1,4 +1,4 @@
-import { createClient, type ClientConfig } from "@sanity/client";
+import { createClient, type ClientConfig } from "next-sanity";
 
 const config: ClientConfig = {
   projectId: "nm9nhxds",
