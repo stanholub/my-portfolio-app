@@ -2,6 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getBlogPost } from "@/lib/blog";
 import { PortableText } from "@portabletext/react";
+import ShareButtons from "@/components/blog/ShareButtons";
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const post = await getBlogPost(params.slug);
@@ -98,15 +99,12 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       
       <hr className="border-gray-100 dark:border-subtle-dark my-10" />
       
-      {/* Share Section (Visual Only) */}
+      {/* Share Section */}
       <div className="mb-12">
         <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-5">
           Share this article
         </h4>
-        <div className="flex gap-3">
-            {/* Buttons omitted for brevity/Scope, but could be added easily */}
-             <div className="text-sm text-gray-500 italic">Share functionality coming soon</div>
-        </div>
+        <ShareButtons title={post.title} />
       </div>
     </main>
   );
