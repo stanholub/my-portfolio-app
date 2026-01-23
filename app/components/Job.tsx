@@ -4,7 +4,7 @@ import type { JobType } from "@/types";
 const formatDate = (date: string) => {
   return new Date(date).toLocaleDateString("en-US", {
     year: "numeric",
-    month: "long",
+    month: "short",
   });
 }
 
@@ -12,30 +12,30 @@ export default async function Job() {
   const jobs: JobType[] = await getJob();
 
   return (
-    <section className="mt-32">
-      <div className="mb-16">
-        <h2 className="font-semibold text-4xl mb-4">Work Experience</h2>
-      </div>
-
-      <div className="flex lg:flex-row flex-col justify-between gap-12">
-        {jobs.sort((a, b) => a.startDate < b.startDate ? 1 : -1).map((data) => (
-          <div
-            key={data._id}
-            className="flex items-start lg:gap-x-6 gap-x-4 max-w-2xl relative hover:text-cyan-400 duration-300"
-          >
-            <div className="flex flex-col items-start">
-              <a href={data.url} rel="noreferrer noopener">
-                <h3 className="text-xl font-bold">{data.name}</h3>
-              </a>
-              <p className="text-zinc-100">{data.jobTitle}</p>
-              <small className="text-sm text-zinc-500 mt-2 tracking-widest uppercase">
-                {data?.startDate ? formatDate(data.startDate.toString()) : "-"} -{" "}
-                {data?.endDate ? formatDate(data.endDate.toString()) : "Present"}
-              </small>
-              <p className="text-base text-zinc-400 my-4">{data.description}</p>
+    <section>
+      <h2 className="text-2xl font-display font-bold text-stone-900 dark:text-white mb-6">Work Experience</h2>
+      <div className="space-y-6 relative border-l border-stone-200 dark:border-stone-800 ml-3 pl-8">
+        {jobs.sort((a, b) => a.startDate < b.startDate ? 1 : -1).map((data) => {
+          const isPresent = !data.endDate;
+          return (
+            <div key={data._id} className="relative">
+              <span className={`absolute -left-[41px] top-1 h-5 w-5 rounded-full border-4 border-background-light dark:border-background-dark ${isPresent ? 'bg-primary' : 'bg-stone-300 dark:bg-stone-700'}`}></span>
+              <div className="mb-1 flex flex-col sm:flex-row sm:items-center sm:justify-between">
+                <a href={data.url} rel="noreferrer noopener" className="hover:text-primary transition-colors duration-300">
+                  <h3 className="text-xl font-bold text-stone-900 dark:text-white">{data.name}</h3>
+                </a>
+                <span className={`text-xs font-semibold tracking-wider uppercase px-2 py-1 rounded w-fit mt-1 sm:mt-0 ${isPresent ? 'text-primary bg-primary/10' : 'text-stone-500 dark:text-stone-500 bg-stone-100 dark:bg-stone-800'}`}>
+                  {data?.startDate ? formatDate(data.startDate.toString()) : "-"} -{" "}
+                  {data?.endDate ? formatDate(data.endDate.toString()) : "Present"}
+                </span>
+              </div>
+              <p className="text-stone-500 dark:text-stone-300 font-medium text-sm mb-3">{data.jobTitle}</p>
+              <p className="text-stone-600 dark:text-stone-400 text-sm leading-relaxed">
+                {data.description}
+              </p>
             </div>
-          </div>
-        ))}
+          );
+        })}
       </div>
     </section>
   );

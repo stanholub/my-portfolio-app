@@ -1,11 +1,7 @@
 export default function Footer() {
-    return (
-      <footer className="border-t border-zinc-800 mt-44">
-        <div className="max-w-7xl mx-auto flex lg:flex-row flex-col items-center lg:justify-between justify-center gap-y-4 md:px-16 px-6 py-16 text-zinc-400">
-          <small className=" duration-200 font-mono">
-            No rights reserved &copy; {new Date().getFullYear()}
-          </small>
-        </div>
-      </footer>
-    );
-  }
+  return (
+    <footer className="text-center pt-8 pb-4 border-t border-stone-200 dark:border-stone-800 mt-20">
+      <p className="text-xs text-stone-400 dark:text-stone-600 font-medium">© {new Date().getFullYear()} Stanislav Holub. All rights reserved.</p>
+    </footer>
+  );
+}
