@@ -1,10 +1,16 @@
+import { PortableTextBlock } from "sanity";
+
 export interface BlogPost {
+  _id: string;
   slug: string;
   title: string;
   excerpt: string;
-  date: string;       // ISO date string mostly
+  date: string;       // ISO date string
   readTime: string;   // e.g. "5 min read"
   category: string;   // e.g. "Engineering", "Design"
-  content: string;    // HTML content for now
-  imageUrl?: string;  // Optional cover image URL
+  mainImage?: {
+    image: string;
+    alt?: string;
+  };
+  content: PortableTextBlock[]; 
 }

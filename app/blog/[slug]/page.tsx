@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { getBlogPost } from "@/lib/blog";
+import { PortableText } from "@portabletext/react";
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
   const post = await getBlogPost(params.slug);
@@ -61,7 +62,16 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           {post.title}
         </h1>
         
-        {/* Placeholder Cover Image */}
+        {/* Cover Image */}
+        {post.mainImage ? (
+          <div className="w-full aspect-[16/9] bg-gray-100 dark:bg-surface-dark border border-gray-100 dark:border-subtle-dark rounded-2xl mb-8 relative overflow-hidden">
+            <img 
+               src={post.mainImage.image} 
+               alt={post.mainImage.alt || post.title}
+               className="object-cover w-full h-full"
+            />
+          </div>
+        ) : (
         <div className="w-full aspect-[16/9] bg-gradient-to-br from-gray-50 to-gray-100 dark:from-surface-dark dark:to-subtle-dark border border-gray-100 dark:border-subtle-dark rounded-2xl mb-8 flex items-center justify-center relative overflow-hidden group">
           <svg
             className="w-16 h-16 text-gray-200 dark:text-gray-600 group-hover:text-gray-300 dark:group-hover:text-gray-500 transition-colors duration-500"
@@ -77,12 +87,14 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             ></path>
           </svg>
         </div>
+        )}
       </header>
 
       <article 
         className="prose prose-lg prose-p:text-gray-600 dark:prose-p:text-gray-400 prose-headings:font-display prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-stone-100 max-w-none dark:prose-invert"
-        dangerouslySetInnerHTML={{ __html: post.content }}
-      />
+      >
+        <PortableText value={post.content} />
+      </article>
       
       <hr className="border-gray-100 dark:border-subtle-dark my-10" />
       
