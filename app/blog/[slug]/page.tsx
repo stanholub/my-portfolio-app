@@ -1,7 +1,9 @@
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import Image from "next/image";
 import { getBlogPost } from "@/lib/blog";
 import { PortableText } from "@portabletext/react";
+import { MdArrowBack } from "react-icons/md";
 import ShareButtons from "@/components/blog/ShareButtons";
 
 export async function generateMetadata({ params }: { params: { slug: string } }) {
@@ -38,7 +40,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
           href="/blog"
           className="w-10 h-10 -ml-2 flex items-center justify-center text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-stone-100 hover:bg-gray-50 dark:hover:bg-subtle-dark rounded-full transition-colors"
         >
-          <span className="material-icons-round text-2xl">arrow_back</span>
+          <MdArrowBack className="text-2xl" />
         </Link>
       </div>
 
@@ -66,10 +68,12 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         {/* Cover Image */}
         {post.mainImage ? (
           <div className="w-full aspect-[16/9] bg-gray-100 dark:bg-surface-dark border border-gray-100 dark:border-subtle-dark rounded-2xl mb-8 relative overflow-hidden">
-            <img 
-               src={post.mainImage.image} 
-               alt={post.mainImage.alt || post.title}
-               className="object-cover w-full h-full"
+            <Image
+              src={post.mainImage.image}
+              alt={post.mainImage.alt || post.title}
+              className="object-cover"
+              fill
+              sizes="(max-width: 768px) 100vw, 600px"
             />
           </div>
         ) : (

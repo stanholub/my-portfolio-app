@@ -2,6 +2,7 @@ import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
 import Job from "./components/Job";
 import { FaGithub, FaLinkedin, FaTwitter, FaInstagram, FaFacebook } from "react-icons/fa";
+import { MdTerminal } from "react-icons/md";
 
 const socialIcons: { [key: string]: JSX.Element } = {
   github: <FaGithub />,
@@ -21,7 +22,7 @@ export default async function Home() {
         
         <div className="w-20 h-20 bg-white dark:bg-stone-800 rounded-2xl flex items-center justify-center shadow-lg border border-stone-200 dark:border-stone-700 relative overflow-hidden group">
           <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-          <span className="material-symbols-outlined text-4xl text-primary">terminal</span>
+          <MdTerminal className="text-4xl text-primary" />
         </div>
 
         {profile &&
