@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FaXTwitter, FaLinkedin, FaThreads } from "react-icons/fa6";
+import { FaXTwitter, FaLinkedin, FaThreads, FaLink } from "react-icons/fa6";
 
 interface ShareButtonsProps {
   title: string;
@@ -9,15 +9,37 @@ interface ShareButtonsProps {
 
 export default function ShareButtons({ title }: ShareButtonsProps) {
   const [url, setUrl] = useState("");
+  const [copied, setCopied] = useState(false);
 
   useEffect(() => {
     setUrl(window.location.href);
   }, []);
 
+  const handleNativeShare = async () => {
+    if (navigator.share) {
+      try {
+        await navigator.share({
+          title,
+          url,
+        });
+      } catch (err) {
+        console.error("Error sharing:", err);
+      }
+    } else {
+      try {
+        await navigator.clipboard.writeText(url);
+        setCopied(true);
+        setTimeout(() => setCopied(false), 2000);
+      } catch (err) {
+        console.error("Failed to copy:", err);
+      }
+    }
+  };
+
   if (!url) {
     return (
        <div className="flex gap-4">
-         {[FaXTwitter, FaLinkedin, FaThreads].map((Icon, i) => (
+         {[FaXTwitter, FaLinkedin, FaThreads, FaLink].map((Icon, i) => (
             <div key={i} className="text-gray-300 dark:text-gray-700">
                <Icon size={24} />
             </div>
@@ -51,7 +73,7 @@ export default function ShareButtons({ title }: ShareButtonsProps) {
   ];
 
   return (
-    <div className="flex gap-4">
+    <div className="flex gap-4 items-center">
       {links.map((link) => (
         <a
           key={link.name}
@@ -64,6 +86,15 @@ export default function ShareButtons({ title }: ShareButtonsProps) {
           <link.icon size={24} />
         </a>
       ))}
+      <button
+        onClick={handleNativeShare}
+        className={`text-gray-400 transition-colors hover:text-gray-600 dark:hover:text-gray-200 ${
+          copied ? "text-green-500 hover:text-green-600 dark:text-green-400" : ""
+        }`}
+        aria-label="Share Link"
+      >
+        <FaLink size={24} />
+      </button>
     </div>
   );
 }
