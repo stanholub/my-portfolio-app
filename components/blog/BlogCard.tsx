@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { BlogPost } from "@/types/blog";
+import { MdArrowForward } from "react-icons/md";
 
 interface BlogCardProps {
   post: BlogPost;
@@ -40,9 +41,7 @@ export default function BlogCard({ post }: BlogCardProps) {
       </p>
       <div className="flex items-center text-primary text-sm font-bold">
         Read Article
-        <span className="material-icons-round text-sm ml-1 transition-transform group-hover:translate-x-1">
-          arrow_forward
-        </span>
+        <MdArrowForward className="text-sm ml-1 transition-transform group-hover:translate-x-1" />
       </div>
       {/* Absolute link overlay for better accessibility/UX on cards */}
       <Link
