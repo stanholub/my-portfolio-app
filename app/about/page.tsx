@@ -2,7 +2,6 @@ import Image from "next/image";
 import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
 import { PortableText } from "@portabletext/react";
-import { BiEnvelope, BiFile } from "react-icons/bi";
 
 import {
   SiReact,
@@ -59,25 +58,8 @@ export default async function About() {
                     quality={100}
                     alt={data.profileImage.alt}
                   />
-                  <a
-                    href={`${data.resumeURL}?dl=${data.fullName}_resume.pdf`}
-                    className="w-full flex items-center justify-center gap-x-2 bg-transparent border border-stone-200 dark:border-stone-700 hover:border-primary hover:text-primary rounded-xl duration-200 py-3 text-center cursor-pointer font-medium text-stone-900 dark:text-white shadow-sm transition-colors group"
-                  >
-                    <BiFile className="text-xl group-hover:text-primary transition-colors text-stone-400 dark:text-stone-500" /> Download Resumé
-                  </a>
                 </div>
 
-                <ul>
-                  <li>
-                    <a
-                      href={`mailto:${data.email}`}
-                      className="flex items-center gap-x-2 text-stone-600 dark:text-stone-400 hover:text-primary duration-300 font-medium"
-                    >
-                      <BiEnvelope className="text-xl" />
-                      {data.email}
-                    </a>
-                  </li>
-                </ul>
               </div>
             </section>
 
