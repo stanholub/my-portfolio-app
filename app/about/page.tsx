@@ -13,7 +13,7 @@ import {
   SiSass,
   SiTailwindcss,
   SiExpress,
-  SiNextdotjs
+  SiNextdotjs,
 } from "react-icons/si";
 
 const skillIcons: { [key: string]: JSX.Element } = {
@@ -40,7 +40,8 @@ export default async function About() {
             <section className="grid lg:grid-cols-2 grid-cols-1 gap-x-6 justify-items-center">
               <div className="order-2 lg:order-none">
                 <h1 className="lg:text-5xl text-4xl lg:leading-tight basis-1/2 font-display font-bold mb-8 text-stone-900 dark:text-white">
-                  I&apos;m {data.fullName}. I live in {data.location}.
+                  I&apos;m {data.fullName}, a Frontend Developer in{" "}
+                  {data.location}, who thrives where complexity meets execution.
                 </h1>
 
                 <div className="flex flex-col gap-y-3 text-stone-600 dark:text-stone-400 leading-relaxed text-lg">
