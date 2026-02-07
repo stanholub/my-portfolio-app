@@ -2,7 +2,6 @@ import Image from "next/image";
 import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
 import { PortableText } from "@portabletext/react";
-import { BiEnvelope } from "react-icons/bi";
 
 import {
   SiReact,
@@ -61,17 +60,6 @@ export default async function About() {
                   />
                 </div>
 
-                <ul>
-                  <li>
-                    <a
-                      href={`mailto:${data.email}`}
-                      className="flex items-center gap-x-2 text-stone-600 dark:text-stone-400 hover:text-primary duration-300 font-medium"
-                    >
-                      <BiEnvelope className="text-xl" />
-                      {data.email}
-                    </a>
-                  </li>
-                </ul>
               </div>
             </section>
 
