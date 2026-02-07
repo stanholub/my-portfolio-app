@@ -2,15 +2,20 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { getBlogPost } from "@/lib/blog";
-import { PortableText } from "@portabletext/react";
+import { PortableText, PortableTextComponents } from "@portabletext/react";
 import { MdArrowBack } from "react-icons/md";
 import ShareButtons from "@/components/blog/ShareButtons";
+import SpotifyEmbed from "@/components/blog/SpotifyEmbed";
 import { Metadata } from "next";
 
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
+export async function generateMetadata({
+  params,
+}: {
+  params: { slug: string };
+}): Promise<Metadata> {
   const post = await getBlogPost(params.slug);
   if (!post) return { title: "Article Not Found" };
-  
+
   return {
     title: `${post.title} | Stanislav Portfolio`,
     description: post.excerpt,
@@ -47,14 +52,36 @@ const CATEGORY_COLORS: Record<string, string> = {
   Tutorials: "bg-blue-50 text-blue-600",
 };
 
-export default async function BlogPostPage({ params }: { params: { slug: string } }) {
+export default async function BlogPostPage({
+  params,
+}: {
+  params: { slug: string };
+}) {
   const post = await getBlogPost(params.slug);
 
   if (!post) {
     notFound();
   }
 
-  const categoryColor = CATEGORY_COLORS[post.category] || "bg-gray-50 text-gray-600";
+  const categoryColor =
+    CATEGORY_COLORS[post.category] || "bg-gray-50 text-gray-600";
+
+  const portableTextComponents: PortableTextComponents = {
+    types: {
+      spotify: ({ value }: any) => <SpotifyEmbed url={value.url} />,
+      image: ({ value }: any) => (
+        <div className="my-8 rounded-xl overflow-hidden">
+          <Image
+            src={value.asset?.url || value.url}
+            alt={value.alt || "Blog image"}
+            width={800}
+            height={600}
+            className="w-full h-auto"
+          />
+        </div>
+      ),
+    },
+  };
 
   return (
     <main className="max-w-xl mx-auto px-6 pt-8 pb-32">
@@ -79,7 +106,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             {new Date(post.date).toLocaleDateString("en-US", {
               month: "short",
               day: "numeric",
-              year: "numeric"
+              year: "numeric",
             })}
             <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600"></span>
             {post.readTime}
@@ -88,7 +115,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
         <h1 className="text-3xl md:text-4xl font-display font-bold text-gray-900 dark:text-stone-100 leading-tight mb-6">
           {post.title}
         </h1>
-        
+
         {/* Cover Image */}
         {post.mainImage ? (
           <div className="w-full aspect-[16/9] bg-gray-100 dark:bg-surface-dark border border-gray-100 dark:border-subtle-dark rounded-2xl mb-8 relative overflow-hidden">
@@ -101,32 +128,30 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
             />
           </div>
         ) : (
-        <div className="w-full aspect-[16/9] bg-gradient-to-br from-gray-50 to-gray-100 dark:from-surface-dark dark:to-subtle-dark border border-gray-100 dark:border-subtle-dark rounded-2xl mb-8 flex items-center justify-center relative overflow-hidden group">
-          <svg
-            className="w-16 h-16 text-gray-200 dark:text-gray-600 group-hover:text-gray-300 dark:group-hover:text-gray-500 transition-colors duration-500"
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path
-              d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-              strokeWidth="1.5"
-            ></path>
-          </svg>
-        </div>
+          <div className="w-full aspect-[16/9] bg-gradient-to-br from-gray-50 to-gray-100 dark:from-surface-dark dark:to-subtle-dark border border-gray-100 dark:border-subtle-dark rounded-2xl mb-8 flex items-center justify-center relative overflow-hidden group">
+            <svg
+              className="w-16 h-16 text-gray-200 dark:text-gray-600 group-hover:text-gray-300 dark:group-hover:text-gray-500 transition-colors duration-500"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth="1.5"
+              ></path>
+            </svg>
+          </div>
         )}
       </header>
 
-      <article 
-        className="prose prose-lg prose-p:text-gray-600 dark:prose-p:text-gray-400 prose-headings:font-display prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-stone-100 max-w-none dark:prose-invert"
-      >
+      <article className="prose prose-lg prose-p:text-gray-600 dark:prose-p:text-gray-400 prose-headings:font-display prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-stone-100 max-w-none dark:prose-invert">
         <PortableText value={post.content} />
       </article>
-      
+
       <hr className="border-gray-100 dark:border-subtle-dark my-10" />
-      
+
       {/* Share Section */}
       <div className="mb-12">
         <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-5">
