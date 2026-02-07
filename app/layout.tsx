@@ -1,5 +1,6 @@
 import "./globals.css";
 import type { Metadata } from "next";
+import Script from "next/script";
 import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import Header from "./components/global/Header";
 import BottomNavbar from "./components/global/BottomNavbar";
@@ -34,6 +35,11 @@ export default function RootLayout({
           <Footer />
         </div>
         <BottomNavbar />
+        <Script
+          src="https://cloud.umami.is/script.js"
+          data-website-id="5ffe66b6-75c9-4c87-be9b-4d8e43da7940"
+          strategy="afterInteractive"
+        />
       </body>
     </html>
   );
