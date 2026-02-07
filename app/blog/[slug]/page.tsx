@@ -5,14 +5,38 @@ import { getBlogPost } from "@/lib/blog";
 import { PortableText } from "@portabletext/react";
 import { MdArrowBack } from "react-icons/md";
 import ShareButtons from "@/components/blog/ShareButtons";
+import { Metadata } from "next";
 
-export async function generateMetadata({ params }: { params: { slug: string } }) {
+export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
   const post = await getBlogPost(params.slug);
   if (!post) return { title: "Article Not Found" };
   
   return {
     title: `${post.title} | Stanislav Portfolio`,
     description: post.excerpt,
+    openGraph: {
+      title: `${post.title} | Stanislav Portfolio`,
+      description: post.excerpt,
+      type: "article",
+      url: `https://stanislav-portfolio.com/blog/${params.slug}`, // Ideally use env var
+      images: [
+        {
+          url: post.mainImage?.image || "",
+          width: 1200,
+          height: 630,
+          alt: post.mainImage?.alt || post.title,
+        },
+      ],
+      publishedTime: post.date,
+      authors: ["Stanislav Holub"],
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: `${post.title} | Stanislav Portfolio`,
+      description: post.excerpt,
+      images: [post.mainImage?.image || ""],
+      creator: "@stanislavholub",
+    },
   };
 }
 

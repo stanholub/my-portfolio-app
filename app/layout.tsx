@@ -5,6 +5,8 @@ import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import Header from "./components/global/Header";
 import BottomNavbar from "./components/global/BottomNavbar";
 import Footer from "./components/global/Footer";
+import { getProfile } from "@/sanity/sanity.query";
+import type { ProfileType } from "@/types";
 
 const outfit = Outfit({ 
   subsets: ["latin"],
@@ -16,10 +18,37 @@ const jakarta = Plus_Jakarta_Sans({
   variable: '--font-jakarta',
 });
 
-export const metadata: Metadata = {
-  title: "Stanislav Holub Portfolio",
-  description: "Portfolio of a software engineer",
-};
+export async function generateMetadata(): Promise<Metadata> {
+  const profile: ProfileType[] = await getProfile();
+
+  return {
+    title: "Stanislav Holub Portfolio",
+    description: profile[0]?.shortBio || "Portfolio of a software engineer",
+    openGraph: {
+      title: "Stanislav Holub Portfolio",
+      description: profile[0]?.shortBio || "Portfolio of a software engineer",
+      url: "https://stanislav-portfolio.com",
+      siteName: "Stanislav Holub Portfolio",
+      images: [
+        {
+          url: profile[0]?.profileImage?.image || "",
+          width: 1200,
+          height: 630,
+          alt: profile[0]?.profileImage?.alt || "Stanislav Holub Portfolio",
+        },
+      ],
+      locale: "en_US",
+      type: "website",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Stanislav Holub Portfolio",
+      description: profile[0]?.shortBio || "Portfolio of a software engineer",
+      images: [profile[0]?.profileImage?.image || ""],
+      creator: "@stanislavholub",
+    },
+  };
+}
 
 export default function RootLayout({
   children,
