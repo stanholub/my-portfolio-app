@@ -1,7 +1,7 @@
 import Image from "next/image";
 import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
-import { PortableText } from "@portabletext/react";
+import { CustomPortableText } from "@/app/components/global/CustomPortableText";
 
 import {
   SiReact,
@@ -44,8 +44,8 @@ export default async function About() {
                   {data.location}, who thrives where complexity meets execution.
                 </h1>
 
-                <div className="flex flex-col gap-y-3 text-stone-600 dark:text-stone-400 leading-relaxed text-lg">
-                  <PortableText value={data.fullBio} />
+                <div className="flex flex-col gap-y-3 text-stone-600 dark:text-stone-400 leading-relaxed text-lg prose dark:prose-invert max-w-none prose-p:text-stone-600 dark:prose-p:text-stone-400">
+                  <CustomPortableText value={data.fullBio} />
                 </div>
               </div>
 

@@ -70,7 +70,22 @@ export default defineType({
       type: 'array',
       of: [
         { type: 'block' },
-        { type: 'image' },
+        {
+          type: 'image',
+          options: { hotspot: true },
+          fields: [
+            {
+              name: 'alt',
+              type: 'string',
+              title: 'Alternative Text',
+            },
+            {
+              name: 'caption',
+              type: 'string',
+              title: 'Caption',
+            }
+          ]
+        },
       ],
     }),
   ],

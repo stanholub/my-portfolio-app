@@ -2,7 +2,7 @@ import Link from "next/link";
 import { notFound } from "next/navigation";
 import Image from "next/image";
 import { getBlogPost } from "@/lib/blog";
-import { PortableText } from "@portabletext/react";
+import { CustomPortableText } from "@/app/components/global/CustomPortableText";
 import { MdArrowBack } from "react-icons/md";
 import ShareButtons from "@/components/blog/ShareButtons";
 import { Metadata } from "next";
@@ -122,7 +122,7 @@ export default async function BlogPostPage({ params }: { params: { slug: string 
       <article 
         className="prose prose-lg prose-p:text-gray-600 dark:prose-p:text-gray-400 prose-headings:font-display prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-stone-100 max-w-none dark:prose-invert"
       >
-        <PortableText value={post.content} />
+        <CustomPortableText value={post.content} />
       </article>
       
       <hr className="border-gray-100 dark:border-subtle-dark my-10" />
