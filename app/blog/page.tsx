@@ -19,8 +19,7 @@ export default async function BlogPage() {
           Writing
         </h1>
         <p className="text-gray-500 dark:text-gray-400 text-lg leading-relaxed">
-          Thoughts on engineering, minimalist design, and building accessible
-          products.
+          Thoughts on engineering and building accessible products.
         </p>
       </header>
 
