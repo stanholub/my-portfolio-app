@@ -3,8 +3,7 @@ import BlogCard from "@/components/blog/BlogCard";
 
 export const metadata = {
   title: "Writing | Stanislav Portfolio",
-  description:
-    "Thoughts on engineering, minimalist design, and building accessible products.",
+  description: "Thoughts on engineering and building accessible products.",
 };
 
 export const revalidate = 60;
