@@ -1,0 +1,30 @@
+# Dependencies
+node_modules
+.pnpm-store
+
+# Build outputs
+.next
+out
+dist
+build
+
+# Cache
+.cache
+.turbo
+
+# Logs
+*.log
+
+# OS files
+.DS_Store
+
+# Environment files
+.env*.local
+
+# Sanity
+.sanity
+
+# Lock files
+pnpm-lock.yaml
+package-lock.json
+yarn.lock
