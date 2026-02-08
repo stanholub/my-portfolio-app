@@ -41,7 +41,7 @@ export default async function About() {
               <div className="order-2 lg:order-none">
                 <h1 className="lg:text-5xl text-4xl lg:leading-tight basis-1/2 font-display font-bold mb-8 text-stone-900 dark:text-white">
                   I&apos;m {data.fullName}, a Frontend Developer in{" "}
-                  {data.location}, who thrives where complexity meets execution.
+                  {data.location}.
                 </h1>
 
                 <div className="flex flex-col gap-y-3 text-stone-600 dark:text-stone-400 leading-relaxed text-lg">
@@ -60,7 +60,6 @@ export default async function About() {
                     alt={data.profileImage.alt}
                   />
                 </div>
-
               </div>
             </section>
 
