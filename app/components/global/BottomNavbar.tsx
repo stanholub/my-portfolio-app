@@ -12,7 +12,7 @@ export default function BottomNavbar() {
   return (
     <nav 
       className="fixed bottom-0 left-0 right-0 w-full max-w-[100vw] bg-surface-light/90 dark:bg-surface-dark/90 backdrop-blur-lg border-t border-stone-200 dark:border-stone-800 z-50 md:hidden"
-      style={{ paddingBottom: 'env(safe-area-inset-bottom)' }}
+      style={{ paddingBottom: 'calc(0.75rem + env(safe-area-inset-bottom))' }}
     >
       <div className="max-w-md mx-auto grid grid-cols-3 items-center px-4 py-3 h-full">
         <Link href="/" className={`flex flex-col items-center gap-1 transition-colors group ${isActive("/") ? "text-primary" : "text-stone-400 hover:text-stone-600 dark:hover:text-stone-300"}`}>

@@ -1,5 +1,5 @@
 import "./globals.css";
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import Header from "./components/global/Header";
@@ -17,6 +17,15 @@ const jakarta = Plus_Jakarta_Sans({
   subsets: ["latin"], 
   variable: '--font-jakarta',
 });
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#FAFAF9" },
+    { media: "(prefers-color-scheme: dark)", color: "#1C1917" },
+  ],
+  viewportFit: "cover",
+  colorScheme: "light dark",
+};
 
 export async function generateMetadata(): Promise<Metadata> {
   const profile: ProfileType[] = await getProfile();
