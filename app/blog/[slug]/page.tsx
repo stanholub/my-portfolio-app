@@ -142,7 +142,7 @@ export default async function BlogPostPage({
   };
 
   return (
-    <main className="max-w-xl mx-auto px-6 pt-8 pb-32">
+    <main className="max-w-5xl mx-auto px-6 pt-8 pb-32">
       {/* Back Button */}
       <div className="mb-8">
         <Link
@@ -154,39 +154,41 @@ export default async function BlogPostPage({
       </div>
 
       <header className="mb-8 animate-fade-in">
-        <div className="flex items-center gap-3 mb-4">
-          <span
-            className={`inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-bold uppercase tracking-wider ${categoryColor}`}
-          >
-            {post.category}
-          </span>
-          <span className="text-xs text-gray-400 font-medium flex items-center gap-2">
-            {new Date(post.date).toLocaleDateString("en-US", {
-              month: "short",
-              day: "numeric",
-              year: "numeric",
-            })}
-            <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600"></span>
-            {post.readTime}
-          </span>
+        <div className="text-center max-w-4xl mx-auto">
+          <div className="flex items-center justify-center gap-3 mb-4">
+            <span
+              className={`inline-flex items-center px-2.5 py-0.5 rounded-md text-xs font-bold uppercase tracking-wider ${categoryColor}`}
+            >
+              {post.category}
+            </span>
+            <span className="text-xs text-gray-400 font-medium flex items-center gap-2">
+              {new Date(post.date).toLocaleDateString("en-US", {
+                month: "short",
+                day: "numeric",
+                year: "numeric",
+              })}
+              <span className="w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600"></span>
+              {post.readTime}
+            </span>
+          </div>
+          <h1 className="text-3xl md:text-5xl font-display font-bold text-gray-900 dark:text-stone-100 leading-tight mb-6">
+            {post.title}
+          </h1>
         </div>
-        <h1 className="text-3xl md:text-4xl font-display font-bold text-gray-900 dark:text-stone-100 leading-tight mb-6">
-          {post.title}
-        </h1>
 
         {/* Cover Image */}
         {post.mainImage ? (
-          <div className="w-full aspect-[16/9] bg-gray-100 dark:bg-surface-dark border border-gray-100 dark:border-subtle-dark rounded-2xl mb-8 relative overflow-hidden">
+          <div className="w-full aspect-[16/9] bg-gray-100 dark:bg-surface-dark border border-gray-100 dark:border-subtle-dark rounded-2xl mb-12 relative overflow-hidden">
             <Image
               src={post.mainImage.image}
               alt={post.mainImage.alt || post.title}
               className="object-cover"
               fill
-              sizes="(max-width: 768px) 100vw, 600px"
+              sizes="(max-width: 768px) 100vw, 1200px"
             />
           </div>
         ) : (
-          <div className="w-full aspect-[16/9] bg-gradient-to-br from-gray-50 to-gray-100 dark:from-surface-dark dark:to-subtle-dark border border-gray-100 dark:border-subtle-dark rounded-2xl mb-8 flex items-center justify-center relative overflow-hidden group">
+          <div className="w-full aspect-[16/9] bg-gradient-to-br from-gray-50 to-gray-100 dark:from-surface-dark dark:to-subtle-dark border border-gray-100 dark:border-subtle-dark rounded-2xl mb-12 flex items-center justify-center relative overflow-hidden group">
             <svg
               className="w-16 h-16 text-gray-200 dark:text-gray-600 group-hover:text-gray-300 dark:group-hover:text-gray-500 transition-colors duration-500"
               fill="none"
@@ -205,20 +207,24 @@ export default async function BlogPostPage({
       </header>
 
       <article className="prose prose-lg prose-p:text-gray-600 dark:prose-p:text-gray-400 prose-headings:font-display prose-headings:font-bold prose-headings:text-gray-900 dark:prose-headings:text-stone-100 max-w-none dark:prose-invert">
-        <PortableText
-          value={post.content}
-          components={portableTextComponents}
-        />
+        <div className="max-w-3xl mx-auto">
+          <PortableText
+            value={post.content}
+            components={portableTextComponents}
+          />
+        </div>
       </article>
 
-      <hr className="border-gray-100 dark:border-subtle-dark my-10" />
+      <div className="max-w-3xl mx-auto">
+        <hr className="border-gray-100 dark:border-subtle-dark my-10" />
 
-      {/* Share Section */}
-      <div className="mb-12">
-        <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-5">
-          Share this article
-        </h4>
-        <ShareButtons title={post.title} />
+        {/* Share Section */}
+        <div className="mb-12">
+          <h4 className="text-xs font-bold text-gray-400 uppercase tracking-widest mb-5">
+            Share this article
+          </h4>
+          <ShareButtons title={post.title} />
+        </div>
       </div>
     </main>
   );
