@@ -2,6 +2,7 @@ import Image from "next/image";
 import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
 import { PortableText } from "@portabletext/react";
+import { Metadata } from "next";
 
 import {
   SiReact,
@@ -15,6 +16,22 @@ import {
   SiExpress,
   SiNextdotjs,
 } from "react-icons/si";
+
+export const metadata: Metadata = {
+  title: "About | Stanislav Holub Portfolio",
+  description:
+    "Learn more about Stanislav Holub, a Frontend Developer passionate about building beautiful web applications.",
+  alternates: {
+    canonical: "/about",
+  },
+  openGraph: {
+    title: "About | Stanislav Holub Portfolio",
+    description:
+      "Learn more about Stanislav Holub, a Frontend Developer passionate about building beautiful web applications.",
+    url: "https://www.pigeondev.eu/about",
+    type: "profile",
+  },
+};
 
 const skillIcons: { [key: string]: JSX.Element } = {
   react: <SiReact />,

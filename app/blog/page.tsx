@@ -4,6 +4,15 @@ import BlogCard from "@/components/blog/BlogCard";
 export const metadata = {
   title: "Writing | Stanislav Portfolio",
   description: "Thoughts on engineering and building accessible products.",
+  alternates: {
+    canonical: "/blog",
+  },
+  openGraph: {
+    title: "Writing | Stanislav Portfolio",
+    description: "Thoughts on engineering and building accessible products.",
+    url: "https://www.pigeondev.eu/blog",
+    type: "website",
+  },
 };
 
 export const revalidate = 60;
