@@ -16,7 +16,7 @@ export default async function Home() {
   const profile: ProfileType[] = await getProfile();
 
   return (
-    <main className="px-6 space-y-24 max-w-4xl mx-auto pt-10">
+    <main className="px-6 grid lg:grid-cols-2 gap-x-12 gap-y-16 items-start max-w-7xl mx-auto pt-10 pb-24">
       <section className="flex flex-col items-start gap-6 relative">
         <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
         

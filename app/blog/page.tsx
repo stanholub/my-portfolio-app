@@ -12,8 +12,8 @@ export default async function BlogPage() {
   const posts = await getBlogPosts();
 
   return (
-    <main className="max-w-xl mx-auto px-6 pt-8 pb-20">
-      <header className="mb-8">
+    <main className="max-w-7xl mx-auto px-6 pt-8 pb-20">
+      <header className="mb-12 text-center max-w-2xl mx-auto">
         <h1 className="text-4xl font-display font-bold text-gray-900 dark:text-stone-100 mb-2">
           Writing
         </h1>
@@ -22,7 +22,7 @@ export default async function BlogPage() {
         </p>
       </header>
 
-      <div className="space-y-5">
+      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
         {posts.map((post) => (
           <BlogCard key={post.slug} post={post} />
         ))}
