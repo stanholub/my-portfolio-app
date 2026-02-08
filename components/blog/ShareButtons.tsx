@@ -1,7 +1,12 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { FaXTwitter, FaLinkedin, FaThreads, FaLink } from "react-icons/fa6";
+import {
+  FaXTwitter,
+  FaLinkedin,
+  FaThreads,
+  FaShareNodes,
+} from "react-icons/fa6";
 
 interface ShareButtonsProps {
   title: string;
@@ -38,13 +43,13 @@ export default function ShareButtons({ title }: ShareButtonsProps) {
 
   if (!url) {
     return (
-       <div className="flex gap-4">
-         {[FaXTwitter, FaLinkedin, FaThreads, FaLink].map((Icon, i) => (
-            <div key={i} className="text-gray-300 dark:text-gray-700">
-               <Icon size={24} />
-            </div>
-         ))}
-       </div>
+      <div className="flex gap-4">
+        {[FaXTwitter, FaLinkedin, FaThreads, FaShareNodes].map((Icon, i) => (
+          <div key={i} className="text-gray-300 dark:text-gray-700">
+            <Icon size={24} />
+          </div>
+        ))}
+      </div>
     );
   }
 
@@ -89,11 +94,13 @@ export default function ShareButtons({ title }: ShareButtonsProps) {
       <button
         onClick={handleNativeShare}
         className={`text-gray-400 transition-colors hover:text-gray-600 dark:hover:text-gray-200 ${
-          copied ? "text-green-500 hover:text-green-600 dark:text-green-400" : ""
+          copied
+            ? "text-green-500 hover:text-green-600 dark:text-green-400"
+            : ""
         }`}
         aria-label="Share Link"
       >
-        <FaLink size={24} />
+        <FaShareNodes size={24} />
       </button>
     </div>
   );

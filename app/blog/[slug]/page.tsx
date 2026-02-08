@@ -148,14 +148,15 @@ export default async function BlogPostPage({
   return (
     <main>
       <Container size="lg" className="pt-8 pb-32">
-        {/* Back Button */}
-        <div className="mb-8">
+        {/* Back Button and Share Buttons */}
+        <div className="mb-8 flex items-center justify-between">
           <Link
             href="/blog"
             className="w-10 h-10 -ml-2 flex items-center justify-center text-gray-500 hover:text-gray-900 dark:text-gray-400 dark:hover:text-stone-100 hover:bg-gray-50 dark:hover:bg-subtle-dark rounded-full transition-colors"
           >
             <MdArrowBack className="text-2xl" />
           </Link>
+          <ShareButtons title={post.title} />
         </div>
 
         <header className="mb-8 animate-fade-in">
