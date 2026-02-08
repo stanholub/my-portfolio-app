@@ -19,11 +19,14 @@ export async function generateMetadata({
   return {
     title: `${post.title} | Stanislav Portfolio`,
     description: post.excerpt,
+    alternates: {
+      canonical: `https://www.pigeondev.eu/blog/${params.slug}`,
+    },
     openGraph: {
       title: `${post.title} | Stanislav Portfolio`,
       description: post.excerpt,
       type: "article",
-      url: `https://stanislav-portfolio.com/blog/${params.slug}`, // Ideally use env var
+      url: `https://www.pigeondev.eu/blog/${params.slug}`,
       images: [
         {
           url: post.mainImage?.image || "",

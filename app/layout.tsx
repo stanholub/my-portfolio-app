@@ -8,14 +8,14 @@ import Footer from "./components/global/Footer";
 import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
 
-const outfit = Outfit({ 
+const outfit = Outfit({
   subsets: ["latin"],
-  variable: '--font-outfit',
+  variable: "--font-outfit",
 });
 
-const jakarta = Plus_Jakarta_Sans({ 
-  subsets: ["latin"], 
-  variable: '--font-jakarta',
+const jakarta = Plus_Jakarta_Sans({
+  subsets: ["latin"],
+  variable: "--font-jakarta",
 });
 
 export const viewport: Viewport = {
@@ -33,10 +33,14 @@ export async function generateMetadata(): Promise<Metadata> {
   return {
     title: "Stanislav Holub Portfolio",
     description: profile[0]?.shortBio || "Portfolio of a software engineer",
+    metadataBase: new URL("https://www.pigeondev.eu"),
+    alternates: {
+      canonical: "/",
+    },
     openGraph: {
       title: "Stanislav Holub Portfolio",
       description: profile[0]?.shortBio || "Portfolio of a software engineer",
-      url: "https://stanislav-portfolio.com",
+      url: "https://www.pigeondev.eu",
       siteName: "Stanislav Holub Portfolio",
       images: [
         {
@@ -66,7 +70,9 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${outfit.variable} ${jakarta.variable} bg-background-light dark:bg-background-dark text-stone-800 dark:text-stone-200 font-body transition-colors duration-300 antialiased selection:bg-primary selection:text-white`}>
+      <body
+        className={`${outfit.variable} ${jakarta.variable} bg-background-light dark:bg-background-dark text-stone-800 dark:text-stone-200 font-body transition-colors duration-300 antialiased selection:bg-primary selection:text-white`}
+      >
         <div className="relative min-h-screen flex flex-col pb-24">
           <Header />
           {children}
