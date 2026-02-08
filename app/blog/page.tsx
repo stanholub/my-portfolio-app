@@ -3,10 +3,11 @@ import BlogCard from "@/components/blog/BlogCard";
 
 export const metadata = {
   title: "Writing | Stanislav Portfolio",
-  description: "Thoughts on engineering, minimalist design, and building accessible products.",
+  description:
+    "Thoughts on engineering, minimalist design, and building accessible products.",
 };
 
-export const revalidate = 60; // Revalidate every 60 seconds
+export const revalidate = 60;
 
 export default async function BlogPage() {
   const posts = await getBlogPosts();
@@ -18,7 +19,8 @@ export default async function BlogPage() {
           Writing
         </h1>
         <p className="text-gray-500 dark:text-gray-400 text-lg leading-relaxed">
-          Thoughts on engineering, minimalist design, and building accessible products.
+          Thoughts on engineering, minimalist design, and building accessible
+          products.
         </p>
       </header>
 
