@@ -3,7 +3,6 @@ import type { Metadata, Viewport } from "next";
 import Script from "next/script";
 import { Outfit, Plus_Jakarta_Sans } from "next/font/google";
 import Header from "./components/global/Header";
-import BottomNavbar from "./components/global/BottomNavbar";
 import Footer from "./components/global/Footer";
 import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
@@ -73,12 +72,11 @@ export default function RootLayout({
       <body
         className={`${outfit.variable} ${jakarta.variable} bg-background-light dark:bg-background-dark text-stone-800 dark:text-stone-200 font-body transition-colors duration-300 antialiased selection:bg-primary selection:text-white`}
       >
-        <div className="relative min-h-screen flex flex-col pb-24">
+        <div className="relative min-h-screen flex flex-col">
           <Header />
           {children}
           <Footer />
         </div>
-        <BottomNavbar />
         <Script
           src="https://cloud.umami.is/script.js"
           data-website-id="5ffe66b6-75c9-4c87-be9b-4d8e43da7940"
