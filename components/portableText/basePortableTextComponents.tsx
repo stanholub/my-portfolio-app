@@ -1,4 +1,8 @@
-import type { PortableTextComponents } from "@portabletext/react";
+import type {
+  PortableTextBlockComponent,
+  PortableTextListComponent,
+  PortableTextMarkComponent,
+} from "@portabletext/react";
 
 type BasePortableTextStyleOptions = {
   normalClassName: string;
@@ -8,10 +12,11 @@ type BasePortableTextStyleOptions = {
   linkClassName: string;
 };
 
-type BasePortableTextComponents = Pick<
-  PortableTextComponents,
-  "block" | "list" | "marks"
->;
+type BasePortableTextComponents = {
+  block: Record<string, PortableTextBlockComponent | undefined>;
+  list: Record<string, PortableTextListComponent | undefined>;
+  marks: Record<string, PortableTextMarkComponent | undefined>;
+};
 
 export const createBasePortableTextComponents = ({
   normalClassName,
