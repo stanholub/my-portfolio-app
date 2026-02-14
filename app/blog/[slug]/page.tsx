@@ -4,6 +4,7 @@ import Image from "next/image";
 import { getBlogPost } from "@/lib/blog";
 import Container from "@/app/components/global/Container";
 import { PortableText, PortableTextComponents } from "@portabletext/react";
+import { createBasePortableTextComponents } from "@/components/portableText/basePortableTextComponents";
 import { MdArrowBack } from "react-icons/md";
 import ShareButtons from "@/components/blog/ShareButtons";
 import SpotifyEmbed from "@/components/blog/SpotifyEmbed";
@@ -70,6 +71,14 @@ export default async function BlogPostPage({
   const categoryColor =
     CATEGORY_COLORS[post.category] || "bg-gray-50 text-gray-600";
 
+  const basePortableTextComponents = createBasePortableTextComponents({
+    normalClassName: "mb-4",
+    bulletListClassName: "list-disc list-inside mb-4 space-y-2",
+    numberListClassName: "list-decimal list-inside mb-4 space-y-2",
+    strongClassName: "font-bold",
+    linkClassName: "text-blue-600 dark:text-blue-400 hover:underline",
+  });
+
   const portableTextComponents: PortableTextComponents = {
     types: {
       spotify: ({ value }: any) => <SpotifyEmbed url={value.url} />,
@@ -91,6 +100,7 @@ export default async function BlogPostPage({
       },
     },
     block: {
+      ...basePortableTextComponents.block,
       h1: ({ children }) => (
         <h1 className="text-3xl font-bold mt-8 mb-4">{children}</h1>
       ),
@@ -103,50 +113,24 @@ export default async function BlogPostPage({
       h4: ({ children }) => (
         <h4 className="text-lg font-bold mt-4 mb-2">{children}</h4>
       ),
-      normal: ({ children }) => <p className="mb-4">{children}</p>,
       blockquote: ({ children }) => (
         <blockquote className="border-l-4 border-gray-300 dark:border-gray-600 pl-4 italic my-6">
           {children}
         </blockquote>
       ),
     },
-    list: {
-      bullet: ({ children }) => (
-        <ul className="list-disc list-inside mb-4 space-y-2">{children}</ul>
-      ),
-      number: ({ children }) => (
-        <ol className="list-decimal list-inside mb-4 space-y-2">{children}</ol>
-      ),
-    },
+    list: basePortableTextComponents.list,
     listItem: {
       bullet: ({ children }) => <li className="ml-4">{children}</li>,
       number: ({ children }) => <li className="ml-4">{children}</li>,
     },
     marks: {
-      strong: ({ children }) => (
-        <strong className="font-bold">{children}</strong>
-      ),
-      em: ({ children }) => <em className="italic">{children}</em>,
+      ...basePortableTextComponents.marks,
       code: ({ children }) => (
         <code className="bg-gray-100 dark:bg-gray-800 px-1.5 py-0.5 rounded text-sm font-mono">
           {children}
         </code>
       ),
-      link: ({ value, children }) => {
-        const target = (value?.href || "").startsWith("http")
-          ? "_blank"
-          : undefined;
-        return (
-          <a
-            href={value?.href}
-            target={target}
-            rel={target === "_blank" ? "noopener noreferrer" : undefined}
-            className="text-blue-600 dark:text-blue-400 hover:underline"
-          >
-            {children}
-          </a>
-        );
-      },
     },
   };
 
