@@ -73,17 +73,22 @@ export default async function BlogPostPage({
   const portableTextComponents: PortableTextComponents = {
     types: {
       spotify: ({ value }: any) => <SpotifyEmbed url={value.url} />,
-      image: ({ value }: any) => (
-        <div className="my-8 rounded-xl overflow-hidden">
-          <Image
-            src={value.asset?.url || value.url}
-            alt={value.alt || "Blog image"}
-            width={800}
-            height={600}
-            className="w-full h-auto"
-          />
-        </div>
-      ),
+      image: ({ value }: any) => {
+        const src = value?.url || value?.asset?.url;
+        if (!src) return null;
+
+        return (
+          <div className="my-8 rounded-xl overflow-hidden">
+            <Image
+              src={src}
+              alt={value.alt || "Blog image"}
+              width={800}
+              height={600}
+              className="w-full h-auto"
+            />
+          </div>
+        );
+      },
     },
     block: {
       h1: ({ children }) => (
