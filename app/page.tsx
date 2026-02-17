@@ -10,8 +10,9 @@ import {
   FaFacebook,
 } from "react-icons/fa";
 import { MdTerminal } from "react-icons/md";
+import React from "react";
 
-const socialIcons: { [key: string]: JSX.Element } = {
+const socialIcons: { [key: string]: React.JSX.Element } = {
   github: <FaGithub />,
   linkedin: <FaLinkedin />,
   twitter: <FaTwitter />,
@@ -29,7 +30,7 @@ export default async function Home() {
           <div className="absolute -top-10 -right-10 w-40 h-40 bg-primary/20 rounded-full blur-3xl pointer-events-none"></div>
 
           <div className="w-20 h-20 bg-white dark:bg-stone-800 rounded-2xl flex items-center justify-center shadow-lg border border-stone-200 dark:border-stone-700 relative overflow-hidden group">
-            <div className="absolute inset-0 bg-gradient-to-tr from-primary/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+            <div className="absolute inset-0 bg-linear-to-tr from-primary/10 to-purple-500/10 opacity-0 group-hover:opacity-100 transition-opacity"></div>
             <MdTerminal className="text-4xl text-primary" />
           </div>
 

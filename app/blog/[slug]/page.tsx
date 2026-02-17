@@ -13,22 +13,23 @@ import { Metadata } from "next";
 export async function generateMetadata({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }): Promise<Metadata> {
-  const post = await getBlogPost(params.slug);
+  const { slug } = await params;
+  const post = await getBlogPost(slug);
   if (!post) return { title: "Article Not Found" };
 
   return {
     title: `${post.title} | Stanislav Portfolio`,
     description: post.excerpt,
     alternates: {
-      canonical: `https://www.pigeondev.eu/blog/${params.slug}`,
+      canonical: `https://www.pigeondev.eu/blog/${slug}`,
     },
     openGraph: {
       title: `${post.title} | Stanislav Portfolio`,
       description: post.excerpt,
       type: "article",
-      url: `https://www.pigeondev.eu/blog/${params.slug}`,
+      url: `https://www.pigeondev.eu/blog/${slug}`,
       images: [
         {
           url: post.mainImage?.image || "",
@@ -60,9 +61,10 @@ const CATEGORY_COLORS: Record<string, string> = {
 export default async function BlogPostPage({
   params,
 }: {
-  params: { slug: string };
+  params: Promise<{ slug: string }>;
 }) {
-  const post = await getBlogPost(params.slug);
+  const { slug } = await params;
+  const post = await getBlogPost(slug);
 
   if (!post) {
     notFound();
@@ -173,7 +175,7 @@ export default async function BlogPostPage({
 
           {/* Cover Image */}
           {post.mainImage ? (
-            <div className="w-full aspect-[16/9] bg-gray-100 dark:bg-surface-dark border border-gray-100 dark:border-subtle-dark rounded-2xl mb-12 relative overflow-hidden">
+            <div className="w-full aspect-video bg-gray-100 dark:bg-surface-dark border border-gray-100 dark:border-subtle-dark rounded-2xl mb-12 relative overflow-hidden">
               <Image
                 src={post.mainImage.image}
                 alt={post.mainImage.alt || post.title}
@@ -183,7 +185,7 @@ export default async function BlogPostPage({
               />
             </div>
           ) : (
-            <div className="w-full aspect-[16/9] bg-gradient-to-br from-gray-50 to-gray-100 dark:from-surface-dark dark:to-subtle-dark border border-gray-100 dark:border-subtle-dark rounded-2xl mb-12 flex items-center justify-center relative overflow-hidden group">
+            <div className="w-full aspect-video bg-linear-to-br from-gray-50 to-gray-100 dark:from-surface-dark dark:to-subtle-dark border border-gray-100 dark:border-subtle-dark rounded-2xl mb-12 flex items-center justify-center relative overflow-hidden group">
               <svg
                 className="w-16 h-16 text-gray-200 dark:text-gray-600 group-hover:text-gray-300 dark:group-hover:text-gray-500 transition-colors duration-500"
                 fill="none"
