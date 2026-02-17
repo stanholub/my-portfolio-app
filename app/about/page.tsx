@@ -2,7 +2,7 @@ import Image from "next/image";
 import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
 import Container from "@/app/components/global/Container";
-import { PortableText } from "@portabletext/react";
+import CustomPortableText from "@/app/components/global/CustomPortableText";
 import { Metadata } from "next";
 
 import {
@@ -65,7 +65,7 @@ export default async function About() {
                   </h1>
 
                   <div className="flex flex-col gap-y-3 text-stone-600 dark:text-stone-400 leading-relaxed text-lg">
-                    <PortableText value={data.fullBio} />
+                    <CustomPortableText value={data.fullBio} />
                   </div>
                 </div>
 

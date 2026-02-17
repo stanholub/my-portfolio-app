@@ -1,7 +1,6 @@
 import { getJob } from "@/sanity/sanity.query";
 import type { JobType } from "@/types";
-import { PortableText, type PortableTextComponents } from "@portabletext/react";
-import { createBasePortableTextComponents } from "@/components/portableText/basePortableTextComponents";
+import CustomPortableText from "@/app/components/global/CustomPortableText";
 import type { PortableTextBlock } from "sanity";
 
 const formatDate = (date: string) => {
@@ -9,32 +8,6 @@ const formatDate = (date: string) => {
     year: "numeric",
     month: "short",
   });
-};
-
-const descriptionBaseComponents = createBasePortableTextComponents({
-  normalClassName: "mb-3 last:mb-0",
-  bulletListClassName: "mb-3 list-disc space-y-1 pl-5",
-  numberListClassName: "mb-3 list-decimal space-y-1 pl-5",
-  strongClassName: "font-semibold text-stone-800 dark:text-stone-200",
-  linkClassName:
-    "text-primary underline decoration-primary/40 underline-offset-2 transition-colors hover:decoration-primary",
-});
-
-const descriptionComponents: PortableTextComponents = {
-  ...descriptionBaseComponents,
-  block: {
-    ...descriptionBaseComponents.block,
-    h2: ({ children }) => (
-      <h2 className="mt-4 mb-2 text-base font-semibold text-stone-900 dark:text-stone-100">
-        {children}
-      </h2>
-    ),
-    h3: ({ children }) => (
-      <h3 className="mt-4 mb-2 text-sm font-semibold text-stone-900 dark:text-stone-100">
-        {children}
-      </h3>
-    ),
-  },
 };
 
 const isPortableTextDescription = (
@@ -88,10 +61,7 @@ export default async function Job() {
                 </p>
                 <div className="text-stone-600 dark:text-stone-400 text-sm leading-relaxed">
                   {isPortableTextDescription(data.description) ? (
-                    <PortableText
-                      value={data.description}
-                      components={descriptionComponents}
-                    />
+                    <CustomPortableText value={data.description} />
                   ) : (
                     <p>{data.description}</p>
                   )}
