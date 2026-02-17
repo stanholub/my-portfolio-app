@@ -16,6 +16,18 @@ This is a personal portfolio application built with Next.js (App Router), TypeSc
 - **Icons**: react-icons
 - **Fonts**: next/font (Inter)
 
+## Sanity Studio Setup
+
+> [!IMPORTANT]
+> This project uses an **Embedded Sanity Studio** available at `/studio`.
+
+- **Deployment**: The Studio is built and deployed automatically with the Next.js application.
+- **Hosted Studio**: The external hosted studio (`pigeondev-portfolio.sanity.studio`) is **DISABLED** to prevent schema mismatches.
+- **Commands**: Do **NOT** run `npx sanity deploy`. Schema changes are applied by deploying the Next.js app.
+- **Configuration**:
+  - `sanity.config.ts`: Defines the embedded studio configuration (`basePath: '/studio'`).
+  - `sanity.cli.ts`: Configures the CLI project/dataset but explicitly excludes `studioHost` to disable hosted deployments.
+
 ## Commands
 
 - **Install dependencies**: `npm install` (or `pnpm install`)
