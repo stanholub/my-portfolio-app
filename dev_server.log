@@ -1,0 +1,27 @@
+
+> my-portfolio-app@0.1.0 dev /app
+> next dev
+
+▲ Next.js 16.1.6 (Turbopack)
+- Local:         http://localhost:3000
+- Network:       http://192.168.0.2:3000
+
+✓ Starting...
+Attention: Next.js now collects completely anonymous telemetry regarding usage.
+This information is used to shape Next.js' roadmap and prioritize features.
+You can learn more, including how to opt-out if you'd not like to participate in this anonymous program, by visiting the following URL:
+https://nextjs.org/telemetry
+
+✓ Ready in 792ms
+○ Compiling / ...
+(node:3000) [MODULE_TYPELESS_PACKAGE_JSON] Warning: Module type of file:///app/tailwind.config.ts?id=1771362881948 is not specified and it doesn't parse as CommonJS.
+Reparsing as ES module because module syntax was detected. This incurs a performance overhead.
+To eliminate this warning, add "type": "module" to /app/package.json.
+(Use `node --trace-warnings ...` to show where the warning was created)
+ GET / 200 in 13.5s (compile: 10.6s, render: 2.9s)
+ GET / 200 in 748ms (compile: 5ms, render: 743ms)
+Image with src "https://cdn.sanity.io/images/nm9nhxds/production/88432f08183892c3552fa5f20f1a72a6e983d70b-853x853.jpg" is using quality "100" which is not configured in images.qualities [75]. Please update your config to [100, 75].
+Read more: https://nextjs.org/docs/messages/next-image-unconfigured-qualities
+ GET /about 200 in 2.6s (compile: 1858ms, render: 697ms)
+ ELIFECYCLE  Command failed.
+[?25h

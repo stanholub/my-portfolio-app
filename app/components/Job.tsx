@@ -34,6 +34,11 @@ const descriptionComponents: PortableTextComponents = {
         {children}
       </h3>
     ),
+    h4: ({ children }) => (
+      <h4 className="mt-4 mb-1 text-xs font-bold uppercase tracking-wide text-stone-900 dark:text-stone-100">
+        {children}
+      </h4>
+    ),
   },
 };
 
