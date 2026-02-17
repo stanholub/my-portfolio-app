@@ -17,6 +17,7 @@ import {
   SiExpress,
   SiNextdotjs,
 } from "react-icons/si";
+import React from "react";
 
 export const metadata: Metadata = {
   title: "About | Stanislav Holub Portfolio",
@@ -34,7 +35,7 @@ export const metadata: Metadata = {
   },
 };
 
-const skillIcons: { [key: string]: JSX.Element } = {
+const skillIcons: { [key: string]: React.JSX.Element } = {
   react: <SiReact />,
   angular: <SiAngular />,
   javascript: <SiJavascript />,
@@ -57,7 +58,7 @@ export default async function About() {
           profile.map((data) => (
             <div key={data._id}>
               <section className="grid lg:grid-cols-2 grid-cols-1 gap-x-12 justify-items-center">
-                <div className="order-2 lg:order-none">
+                <div className="order-2 lg:order-0">
                   <h1 className="lg:text-5xl text-4xl lg:leading-tight basis-1/2 font-display font-bold mb-8 text-stone-900 dark:text-white">
                     I&apos;m {data.fullName}, a Frontend Developer in{" "}
                     {data.location}.
@@ -68,7 +69,7 @@ export default async function About() {
                   </div>
                 </div>
 
-                <div className="flex flex-col lg:justify-self-center justify-self-start gap-y-8 lg:order-1 order-none mb-12">
+                <div className="flex flex-col lg:justify-self-center justify-self-start gap-y-8 lg:order-1 order-0 mb-12">
                   <div>
                     <Image
                       className="rounded-2xl mb-4 object-cover max-h-96 min-h-96 bg-top bg-stone-100 dark:bg-stone-800"
