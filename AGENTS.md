@@ -53,3 +53,29 @@ This is a personal portfolio application built with Next.js (App Router), TypeSc
 - The project uses **Sanity CMS** for content management. Changes to content structure usually require updating both the Sanity schema and the manual types in `types/index.ts`.
 - Metadata is currently hardcoded in `layout.tsx`.
 - The design system is minimal, relying on Zinc colors and default Tailwind utilities.
+
+## Git Commit Conventions
+
+This project enforces [Conventional Commits](https://www.conventionalcommits.org/). All commit messages must follow the format:
+
+```
+<type>(<scope>): <subject>
+```
+
+Common types:
+- `feat`: A new feature
+- `fix`: A bug fix
+- `docs`: Documentation only changes
+- `style`: Changes that do not affect the meaning of the code (white-space, formatting, etc)
+- `refactor`: A code change that neither fixes a bug nor adds a feature
+- `perf`: A code change that improves performance
+- `test`: Adding missing tests or correcting existing tests
+- `build`: Changes that affect the build system or external dependencies
+- `ci`: Changes to our CI configuration files and scripts
+- `chore`: Other changes that don't modify src or test files
+- `revert`: Reverts a previous commit
+
+Examples:
+- `feat(blog): add new blog post component`
+- `fix(header): correct z-index issue on mobile`
+- `chore: update dependencies`

@@ -3,6 +3,9 @@ import { PortableTextBlock } from "sanity";
 export type ProfileType = {
   _id: string;
   fullName: string;
+  firstName?: string;
+  lastName?: string;
+  surnameExplanation?: string;
   headline: string;
   profileImage: {
     alt: string;
