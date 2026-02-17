@@ -4,6 +4,7 @@ import type { ProfileType } from "@/types";
 import Container from "@/app/components/global/Container";
 import Tooltip from "@/app/components/global/Tooltip";
 import { PortableText } from "@portabletext/react";
+import { createBasePortableTextComponents } from "@/components/portableText/basePortableTextComponents";
 import { Metadata } from "next";
 
 import {
@@ -49,6 +50,15 @@ const skillIcons: { [key: string]: React.JSX.Element } = {
   nextjs: <SiNextdotjs />,
 };
 
+const aboutComponents = createBasePortableTextComponents({
+  normalClassName: "",
+  bulletListClassName: "mb-4 list-disc space-y-1 pl-5",
+  numberListClassName: "mb-4 list-decimal space-y-1 pl-5",
+  strongClassName: "font-semibold text-stone-800 dark:text-stone-200",
+  linkClassName:
+    "text-primary underline decoration-primary/40 underline-offset-2 transition-colors hover:decoration-primary",
+});
+
 const SURNAME_EXPLANATION_FALLBACK =
   "In my native language, my surname Holub translates to Pigeon. While I don't deliver messages via leg-straps anymore, I still specialize in delivering high-performance code and seamless user experiences.";
 
@@ -90,7 +100,10 @@ export default async function About() {
                     </h1>
 
                     <div className="flex flex-col gap-y-3 text-stone-600 dark:text-stone-400 leading-relaxed text-lg">
-                      <PortableText value={data.fullBio} />
+                      <PortableText
+                        value={data.fullBio}
+                        components={aboutComponents}
+                      />
                     </div>
                   </div>
 
