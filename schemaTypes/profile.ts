@@ -14,6 +14,25 @@ const profile = {
       validation: (rule) => rule.required(),
     }),
     defineField({
+      name: "firstName",
+      title: "First Name",
+      type: "string",
+      description: "First name of the user",
+    }),
+    defineField({
+      name: "lastName",
+      title: "Last Name",
+      type: "string",
+      description: "Last name of the user",
+    }),
+    defineField({
+      name: "surnameExplanation",
+      title: "Surname Explanation",
+      type: "text",
+      rows: 3,
+      description: "Explanation text for the surname tooltip",
+    }),
+    defineField({
       name: "headline",
       title: "Headline",
       type: "string",

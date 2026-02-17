@@ -6,6 +6,9 @@ export async function getProfile() {
     groq`*[_type == "profile"]{
       _id,
       fullName,
+      firstName,
+      lastName,
+      surnameExplanation,
       headline,
       profileImage {alt, "image": asset->url},
       shortBio,
