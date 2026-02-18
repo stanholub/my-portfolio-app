@@ -6,6 +6,7 @@ import Tooltip from "@/app/components/global/Tooltip";
 import { PortableText } from "@portabletext/react";
 import { createBasePortableTextComponents } from "@/components/portableText/basePortableTextComponents";
 import { Metadata } from "next";
+import { stripHtml } from "@/lib/utils";
 
 import {
   SiReact,
@@ -87,16 +88,16 @@ export default async function About() {
             const jsonLd = {
               "@context": "https://schema.org",
               "@type": "Person",
-              name: data.fullName,
-              jobTitle: data.headline,
+              name: stripHtml(data.fullName),
+              jobTitle: stripHtml(data.headline),
               image: data.profileImage.image,
-              description: data.shortBio,
+              description: stripHtml(data.shortBio),
               url: "https://www.pigeondev.eu/about",
               sameAs: Object.values(data.socialLinks),
               email: data.email,
               address: {
                 "@type": "PostalAddress",
-                addressLocality: data.location,
+                addressLocality: stripHtml(data.location),
               },
               knowsAbout: data.skills,
             };
@@ -105,7 +106,11 @@ export default async function About() {
               <div key={data._id}>
                 <script
                   type="application/ld+json"
-                  dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+                  dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(jsonLd)
+                      .replace(/</g, "\\u003c")
+                      .replace(/>/g, "\\u003e"),
+                  }}
                 />
                 <section className="grid lg:grid-cols-2 grid-cols-1 gap-x-12 justify-items-center">
                   <div className="order-2 lg:order-0">
