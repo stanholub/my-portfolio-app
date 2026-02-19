@@ -10,7 +10,7 @@ interface BlogCardProps {
 
 const CATEGORY_COLORS: Record<string, string> = {
   Engineering: "bg-orange-50 text-orange-600",
-  Design: "bg-purple-50 text-purple-600",
+  AI: "bg-purple-50 text-purple-600",
   Career: "bg-teal-50 text-teal-600",
   Tutorials: "bg-blue-50 text-blue-600",
 };
