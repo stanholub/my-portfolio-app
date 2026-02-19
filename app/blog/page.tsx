@@ -3,15 +3,13 @@ import BlogCard from "@/components/blog/BlogCard";
 import Container from "@/app/components/global/Container";
 
 export const metadata = {
-  title: "Writing | Stanislav Portfolio",
+  title: "Writing",
   description: "Thoughts on engineering and building accessible products.",
   alternates: {
     canonical: "/blog",
   },
   openGraph: {
-    title: "Writing | Stanislav Portfolio",
-    description: "Thoughts on engineering and building accessible products.",
-    url: "https://www.pigeondev.eu/blog",
+    url: "/blog",
     type: "website",
   },
 };
