@@ -6,6 +6,7 @@ import Tooltip from "@/app/components/global/Tooltip";
 import { PortableText } from "@portabletext/react";
 import { createBasePortableTextComponents } from "@/components/portableText/basePortableTextComponents";
 import { Metadata } from "next";
+import { stripHtml } from "@/lib/utils";
 
 import {
   SiReact,
@@ -84,8 +85,33 @@ export default async function About() {
             const tooltipText =
               data.surnameExplanation || SURNAME_EXPLANATION_FALLBACK;
 
+            const jsonLd = {
+              "@context": "https://schema.org",
+              "@type": "Person",
+              name: stripHtml(data.fullName),
+              jobTitle: stripHtml(data.headline),
+              image: data.profileImage.image,
+              description: stripHtml(data.shortBio),
+              url: "https://www.pigeondev.eu/about",
+              sameAs: Object.values(data.socialLinks),
+              email: data.email,
+              address: {
+                "@type": "PostalAddress",
+                addressLocality: stripHtml(data.location),
+              },
+              knowsAbout: data.skills,
+            };
+
             return (
               <div key={data._id}>
+                <script
+                  type="application/ld+json"
+                  dangerouslySetInnerHTML={{
+                    __html: JSON.stringify(jsonLd)
+                      .replace(/</g, "\\u003c")
+                      .replace(/>/g, "\\u003e"),
+                  }}
+                />
                 <section className="grid lg:grid-cols-2 grid-cols-1 gap-x-12 justify-items-center">
                   <div className="order-2 lg:order-0">
                     <h1 className="lg:text-5xl text-4xl lg:leading-tight basis-1/2 font-display font-bold mb-8 text-stone-900 dark:text-white">
