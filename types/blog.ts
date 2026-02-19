@@ -7,7 +7,7 @@ export interface BlogPost {
   excerpt: string;
   date: string;       // ISO date string
   readTime: string;   // e.g. "5 min read"
-  category: string;   // e.g. "Engineering", "Design"
+  category: string;   // e.g. "Engineering", "AI"
   mainImage?: {
     image: string;
     alt?: string;

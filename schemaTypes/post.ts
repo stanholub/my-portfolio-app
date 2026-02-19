@@ -38,7 +38,7 @@ export default defineType({
       options: {
         list: [
           { title: "Engineering", value: "Engineering" },
-          { title: "Design", value: "Design" },
+          { title: "AI", value: "AI" },
           { title: "Career", value: "Career" },
           { title: "Tutorials", value: "Tutorials" },
         ],
