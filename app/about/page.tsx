@@ -23,17 +23,14 @@ import {
 import React from "react";
 
 export const metadata: Metadata = {
-  title: "About | Stanislav Holub Portfolio",
+  title: "About",
   description:
     "Learn more about Stanislav Holub, a Frontend Developer passionate about building beautiful web applications.",
   alternates: {
     canonical: "/about",
   },
   openGraph: {
-    title: "About | Stanislav Holub Portfolio",
-    description:
-      "Learn more about Stanislav Holub, a Frontend Developer passionate about building beautiful web applications.",
-    url: "https://www.pigeondev.eu/about",
+    url: "/about",
     type: "profile",
   },
 };

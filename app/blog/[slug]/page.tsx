@@ -20,16 +20,14 @@ export async function generateMetadata({
   if (!post) return { title: "Article Not Found" };
 
   return {
-    title: `${post.title} | Stanislav Portfolio`,
+    title: post.title,
     description: post.excerpt,
     alternates: {
-      canonical: `https://www.pigeondev.eu/blog/${slug}`,
+      canonical: `/blog/${slug}`,
     },
     openGraph: {
-      title: `${post.title} | Stanislav Portfolio`,
-      description: post.excerpt,
       type: "article",
-      url: `https://www.pigeondev.eu/blog/${slug}`,
+      url: `/blog/${slug}`,
       images: [
         {
           url: post.mainImage?.image || "",
@@ -43,8 +41,6 @@ export async function generateMetadata({
     },
     twitter: {
       card: "summary_large_image",
-      title: `${post.title} | Stanislav Portfolio`,
-      description: post.excerpt,
       images: [post.mainImage?.image || ""],
       creator: "@stanislavholub",
     },

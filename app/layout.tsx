@@ -30,7 +30,10 @@ export async function generateMetadata(): Promise<Metadata> {
   const profile: ProfileType[] = await getProfile();
 
   return {
-    title: "Stanislav Holub Portfolio",
+    title: {
+      template: "%s | Stanislav Holub Portfolio",
+      default: "Stanislav Holub Portfolio",
+    },
     description: profile[0]?.shortBio || "Portfolio of a software engineer",
     metadataBase: new URL("https://www.pigeondev.eu"),
     alternates: {
