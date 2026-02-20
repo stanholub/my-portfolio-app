@@ -71,6 +71,7 @@ export default defineType({
       of: [
         { type: "block" },
         { type: "image" },
+        { type: "mermaid" },
         {
           type: "object",
           name: "spotify",
