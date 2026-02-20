@@ -8,6 +8,7 @@ import { createBasePortableTextComponents } from "@/components/portableText/base
 import { MdArrowBack } from "react-icons/md";
 import ShareButtons from "@/components/blog/ShareButtons";
 import SpotifyEmbed from "@/components/blog/SpotifyEmbed";
+import Mermaid from "@/app/components/blog/Mermaid";
 import { Metadata } from "next";
 
 export async function generateMetadata({
@@ -79,6 +80,9 @@ export default async function BlogPostPage({
 
   const portableTextComponents: PortableTextComponents = {
     types: {
+      mermaid: ({ value }: any) => (
+        <Mermaid code={value.code} caption={value.caption} />
+      ),
       spotify: ({ value }: any) => <SpotifyEmbed url={value.url} />,
       image: ({ value }: any) => {
         const src = value?.url || value?.asset?.url;
