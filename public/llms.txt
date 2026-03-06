@@ -1,0 +1,32 @@
+# Stanislav Holub Portfolio
+
+> This file is intended for Large Language Models (LLMs) to better understand the context and content of this website.
+
+## Identity
+- **Name:** Stanislav Holub
+- **Role:** Frontend Developer
+- **Bio:** Stanislav Holub is a Frontend Developer passionate about building beautiful web applications. His surname "Holub" translates to "Pigeon" in his native language.
+
+## Website Overview
+This website (https://www.pigeondev.eu) serves as a personal portfolio and blog. It showcases Stanislav's professional skills, work experience, and technical writing.
+
+### Key Sections
+1.  **Home (/)**: Introduction, social links, and featured projects/jobs.
+2.  **About (/about)**: Detailed biography, skills list, and explanation of the "Pigeon" surname.
+3.  **Blog (/blog)**: Technical articles on web development, React, Next.js, and related technologies.
+
+## Technology Stack
+The website is a modern web application leveraging the following technologies:
+-   **Framework:** Next.js (App Router)
+-   **Language:** TypeScript
+-   **Styling:** Tailwind CSS, Sass
+-   **CMS:** Sanity
+-   **Hosting/Deployment:** Vercel
+
+## Navigation for Crawlers
+-   **Sitemap:** https://www.pigeondev.eu/sitemap.xml
+-   **Robots.txt:** https://www.pigeondev.eu/robots.txt
+
+## Social Presence
+Links to Stanislav's social profiles (GitHub, LinkedIn, Twitter, etc.) are available on the homepage.
+-   **Twitter/X:** [@stanislavholub](https://twitter.com/stanislavholub)
