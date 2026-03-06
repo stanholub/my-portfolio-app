@@ -83,6 +83,7 @@ export default function RootLayout({
         <Script
           src="https://cloud.umami.is/script.js"
           data-website-id="5ffe66b6-75c9-4c87-be9b-4d8e43da7940"
+          data-domains="www.pigeondev.eu"
           strategy="afterInteractive"
         />
       </body>
