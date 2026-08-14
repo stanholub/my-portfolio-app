@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useState, useSyncExternalStore } from "react";
 import {
   FaXTwitter,
   FaLinkedin,
@@ -12,13 +12,20 @@ interface ShareButtonsProps {
   title: string;
 }
 
-export default function ShareButtons({ title }: ShareButtonsProps) {
-  const [url, setUrl] = useState("");
-  const [copied, setCopied] = useState(false);
+// The document URL is only available in the browser, so it is read as an
+// external store: the server snapshot renders the placeholder below, and the
+// real href is picked up once the component hydrates.
+const subscribeToUrl = () => () => {};
+const getUrlSnapshot = () => window.location.href;
+const getUrlServerSnapshot = () => "";
 
-  useEffect(() => {
-    setUrl(window.location.href);
-  }, []);
+export default function ShareButtons({ title }: ShareButtonsProps) {
+  const url = useSyncExternalStore(
+    subscribeToUrl,
+    getUrlSnapshot,
+    getUrlServerSnapshot
+  );
+  const [copied, setCopied] = useState(false);
 
   const handleNativeShare = async () => {
     if (navigator.share) {

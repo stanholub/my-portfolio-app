@@ -18,6 +18,11 @@ This is a personal portfolio application built with Next.js (App Router), TypeSc
 
 ## Commands
 
+> [!IMPORTANT]
+> This project requires **Node.js 24** (see `.nvmrc` and the `engines` field in
+> `package.json`). `.npmrc` sets `engine-strict=true`, so installs fail on older
+> runtimes. Run `nvm use` to switch.
+
 - **Install dependencies**: `npm install` (or `pnpm install`)
 - **Start development server**: `npm run dev`
 - **Build for production**: `npm run build`
