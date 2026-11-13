@@ -1,7 +1,7 @@
 import { getProfile } from "@/sanity/sanity.query";
 import type { ProfileType } from "@/types";
-import Job from "./components/Job";
-import Container from "./components/global/Container";
+import Job from "@/app/components/Job";
+import Container from "@/app/components/global/Container";
 import {
   FaGithub,
   FaLinkedin,

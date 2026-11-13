@@ -15,7 +15,9 @@ test.describe("Smoke Tests", () => {
     // Check for the heading
     await expect(page.locator("h1")).toBeVisible();
     // Check for skills section
-    await expect(page.getByText("To build beautiful software, I use these technologies.")).toBeVisible();
+    await expect(
+      page.getByText("To build beautiful software, I use these technologies.")
+    ).toBeVisible();
   });
 
   test("Blog index loads successfully", async ({ page }) => {
@@ -54,5 +56,20 @@ test.describe("Smoke Tests", () => {
     await page.goto("/studio");
     // Sanity Studio is a Single Page App, so we wait for the title to be set
     await expect(page).toHaveTitle(/Stanislav Holub Portfolio/);
+  });
+});
+
+test.describe("Edelas preview", () => {
+  test("Edelas page loads without portfolio chrome", async ({ page }) => {
+    await page.goto("/edelas");
+    await expect(page).toHaveTitle(/EDELAS/);
+    await expect(page.locator("h1")).toHaveText("Produkcja odzieży premium");
+    await expect(page.locator('meta[name="robots"]')).toHaveAttribute(
+      "content",
+      /noindex/
+    );
+    await expect(
+      page.getByRole("button", { name: "Wyślij zapytanie ofertowe" })
+    ).toBeVisible();
   });
 });
