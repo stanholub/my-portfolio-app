@@ -6,8 +6,13 @@ export const metadata: Metadata = {
   description:
     "Najwyższej jakości produkcja marek własnych, stroje korporacyjne i autorskie kolekcje szwalnicze.",
   // Preview copy of edelasapparel.com — keep it out of search results.
-  robots: { index: false, follow: false },
-  alternates: { canonical: "https://www.edelasapparel.com/" },
+  // No canonical here: Google treats noindex + canonical as mixed signals.
+  // Matching X-Robots-Tag headers live in next.config.mjs.
+  robots: {
+    index: false,
+    follow: false,
+    googleBot: { index: false, follow: false, noimageindex: true },
+  },
 };
 
 export const viewport: Viewport = {
